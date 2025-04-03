@@ -9,11 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\school_icon.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Assets\school_icon.png" />
+    <Compile Remove="Nowy folder1\**" />
+    <Compile Remove="Nowy folder2\**" />
+    <Compile Remove="Nowy folder\**" />
+    <EmbeddedResource Remove="Nowy folder1\**" />
+    <EmbeddedResource Remove="Nowy folder2\**" />
+    <EmbeddedResource Remove="Nowy folder\**" />
+    <None Remove="Nowy folder1\**" />
+    <None Remove="Nowy folder2\**" />
+    <None Remove="Nowy folder\**" />
+    <Page Remove="Nowy folder1\**" />
+    <Page Remove="Nowy folder2\**" />
+    <Page Remove="Nowy folder\**" />
   </ItemGroup>
 
   <ItemGroup>

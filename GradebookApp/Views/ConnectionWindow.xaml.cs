@@ -16,8 +16,14 @@ namespace GradebookApp.Views
         {
             if (DataContext is ConnectionViewModel vm)
             {
-                vm.Password = ((PasswordBox)sender).Password;
+                vm.Password = PasswordBox.Password;
+
+                // Jeśli masz placeholder, to też ogarniasz
+                PasswordPlaceholder.Visibility = string.IsNullOrEmpty(PasswordBox.Password)
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
             }
         }
+
     }
 }

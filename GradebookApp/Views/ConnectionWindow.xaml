@@ -5,50 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GradebookApp.Views"
         mc:Ignorable="d"
-        Title="Połączenie z bazą danych" Height="450" Width="800">
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        Title="Połączenie z bazą danych"
+        Height="540" Width="350"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F0F0"
+        WindowStyle="SingleBorderWindow">
 
-        <!-- Host -->
-        <TextBlock Text="Host/IP:" Grid.Row="0" Grid.Column="0" Margin="5"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="5"
-                 Text="{Binding Host, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+    <Grid>
+        <Border Background="White" CornerRadius="10" Padding="30"
+                BorderBrush="LightGray" BorderThickness="1"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="340">
+            <StackPanel>
+                <StackPanel>
+                    <Image Source="pack://application:,,,/Assets/school_icon.png"
+                           Width="100" Height="100"
+                           Margin="0 0 0 0"
+                           HorizontalAlignment="Center"/>
+                    <TextBlock Text="Połączenie z bazą danych"
+                               FontSize="18" FontWeight="Bold" 
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
 
-        <!-- Port -->
-        <TextBlock Text="Port:" Grid.Row="1" Grid.Column="0" Margin="5"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="5"
-                 Text="{Binding Port, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Text="{Binding Host}" Tag="Host/IP"/>
+                <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Text="{Binding Port}" Tag="Port"/>
+                <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Text="{Binding DatabaseName}" Tag="Nazwa bazy"/>
+                <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Text="{Binding Username}" Tag="Login"/>
+                <!-- Password -->
+                <Grid Margin="8">
+                    <Grid>
+                        <PasswordBox x:Name="PasswordBox"
+                     Margin="8"
+                     FontSize="14"
+                     Background="White"
+                     BorderBrush="Gray"
+                     BorderThickness="0"
+                     PasswordChanged="PasswordBox_PasswordChanged"/>
+                        <TextBlock x:Name="PasswordPlaceholder"
+                   Text="Hasło"
+                                   Margin="8"
+                                   FontSize="14"
+                   Foreground="Gray"
+                   VerticalAlignment="Center"
+                   IsHitTestVisible="False"
+                   Visibility="Visible"/>
+                    </Grid>
+                </Grid>
 
-        <!-- Database -->
-        <TextBlock Text="Nazwa bazy:" Grid.Row="2" Grid.Column="0" Margin="5"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="5"
-                 Text="{Binding DatabaseName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
-        <!-- Username -->
-        <TextBlock Text="Login:" Grid.Row="3" Grid.Column="0" Margin="5"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="5"
-                 Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
-        <!-- Password -->
-        <TextBlock Text="Hasło:" Grid.Row="4" Grid.Column="0" Margin="5"/>
-        <PasswordBox Grid.Row="4" Grid.Column="1" Margin="5"
-                     Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged" />
 
-        <!-- Button -->
-        <Button Content="Połącz" Grid.Row="5" Grid.ColumnSpan="2" Margin="5"
-                HorizontalAlignment="Right" Padding="10,4"
-                Command="{Binding ConnectCommand}" />
+                <Button Content="Połącz"
+                        Command="{Binding ConnectCommand}"
+                        Style="{StaticResource ButtonStyle}" />
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
