@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GradebookApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GradebookApp.Data
 {
@@ -9,6 +10,24 @@ namespace GradebookApp.Data
         {
         }
 
-        // Dodasz tu później DbSety np. Students, Grades, itd.
+        public DbSet<User> Users { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Class> Classes { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Student)
+                .WithOne(s => s.User)
+                .HasForeignKey<Student>(s => s.UserId);
+
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Teacher)
+                .WithOne(t => t.User)
+                .HasForeignKey<Teacher>(t => t.UserId);
+        }
     }
 }

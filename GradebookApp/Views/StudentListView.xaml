@@ -1,0 +1,39 @@
+﻿<Window x:Class="GradebookApp.Views.StudentListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GradebookApp.Views"
+        mc:Ignorable="d"
+        Title="StudentListView" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Filtrowanie po klasie -->
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Left">
+            <TextBlock Text="Filtruj po klasie:" VerticalAlignment="Center" Margin="0 0 10 0"/>
+            <ComboBox x:Name="ClassComboBox" Width="120" SelectionChanged="ClassComboBox_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- Lista uczniów -->
+        <DataGrid x:Name="StudentsDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Imię" Binding="{Binding FirstName}" Width="*"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding LastName}" Width="*"/>
+                <DataGridTextColumn Header="Klasa" Binding="{Binding Class.Name}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Przycisk podglądu ocen -->
+        <Button Grid.Row="2" Content="Pokaż oceny wybranego ucznia"
+                Margin="0 10 0 0"
+                Height="35"
+                Width="250"
+                HorizontalAlignment="Right"
+                Click="ShowGradesButton_Click"/>
+    </Grid>
+</Window>

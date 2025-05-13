@@ -18,7 +18,7 @@
                 HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="340">
             <StackPanel>
-                <StackPanel>
+                <StackPanel Margin="0 0 0 10">
                     <Image Source="pack://application:,,,/Assets/school_icon.png"
                            Width="100" Height="100"
                            Margin="0 0 0 0"
